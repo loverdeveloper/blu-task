@@ -1,7 +1,7 @@
 import { Request } from "../Request";
 import { AxiosResponse } from "axios";
 
-export type PaymentHistoryRequestType = {
+export type TransactionRequestType = {
   amount: number;
   date: string;
   id: number;
@@ -9,10 +9,10 @@ export type PaymentHistoryRequestType = {
   referenceNumber: string;
   trackingCode: number;
 };
-export class PaymentHistoryRequest extends Request {
+export class TransactionHistoryRequest extends Request {
   requestUrl = "gHruOU/data";
 
-  async fetch(): Promise<PaymentHistoryRequestType[]> {
+  async fetch(): Promise<TransactionRequestType[]> {
     const request = await this.REST_SERVICE.get({
       url: this.getFetchUrl(),
       params: this.requestBody,
@@ -22,7 +22,7 @@ export class PaymentHistoryRequest extends Request {
     return this.transformer(request);
   }
 
-  transformer({ data }: AxiosResponse<any, any>): PaymentHistoryRequestType[] {
+  transformer({ data }: AxiosResponse<any, any>): TransactionRequestType[] {
     return data.map(function (transaction) {
       return {
         amount: transaction.amount,

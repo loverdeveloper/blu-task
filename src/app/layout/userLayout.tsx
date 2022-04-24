@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Layout, LayoutProps } from "@/layout/layout";
-import { Header } from "@/components/general/transaction";
+import { Header } from "@/components/general/header";
 
 export interface UserLayoutProps extends LayoutProps {}
 

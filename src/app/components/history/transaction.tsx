@@ -11,12 +11,17 @@ export interface TransactionProps {
   date?: string;
   amount?: number;
   type?: "received" | "sent";
+  onClick?: () => void;
 }
-export const Transaction: React.FC<TransactionProps> = ({ className, date, amount, type }) => {
-  // @ts-ignore
-  window.x = moment(date);
+export const Transaction: React.FC<TransactionProps> = ({
+  className,
+  date,
+  amount,
+  type,
+  onClick,
+}) => {
   return (
-    <div className="flex bg-white p-5">
+    <div className={cn("flex bg-white p-5", className)} onClick={onClick}>
       <div className="flex items-center justify-center h-full ml-2 py-3">
         {type === "received" ? (
           <ArrowDownRight size={22} weight="bold" className="text-red-600" />
