@@ -8,18 +8,18 @@ export const usePagination = (
   const [hasMore, setHasMore] = useState(true);
 
   const loadMore = async () => {
-    try {
-      const list = await getData(pageNumber);
-      if (!list || !list?.length) {
-        setHasMore(false);
-        return;
-      }
-      setPageNumber(pageNumber + 1);
-      setItems([...items, ...list]);
-    } catch (e) {
-      alert("مشکلثی در زمان دریافت اطلاعات پیش اومد.");
+    // try {
+    const list = await getData(pageNumber);
+    if (!list || !list?.length) {
       setHasMore(false);
+      return;
     }
+    setPageNumber(pageNumber + 1);
+    setItems([...items, ...list]);
+    // } catch (e) {
+    //   alert("مشکلثی در زمان دریافت اطلاعات پیش اومد.");
+    //   setHasMore(false);
+    // }
   };
 
   return [items, loadMore, hasMore, pageNumber];
