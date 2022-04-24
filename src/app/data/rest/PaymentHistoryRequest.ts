@@ -1,4 +1,5 @@
 import { Request } from "../Request";
+import { AxiosResponse } from "axios";
 
 export class PaymentHistoryRequest extends Request {
   requestUrl = "gHruOU/data";
@@ -9,11 +10,11 @@ export class PaymentHistoryRequest extends Request {
       params: this.requestBody,
       headers: this.requestHeaders,
     });
-    console.log(request);
-    return this.transformer();
+
+    return this.transformer(request);
   }
 
-  transformer(): object {
-    return {};
+  transformer({ data }: AxiosResponse<any, any>): object {
+    return data;
   }
 }

@@ -1,6 +1,7 @@
 import { RequestInterface } from "./requestInterface";
 import { GET } from "./rest/requests";
 import { API } from "../constants/API";
+import { AxiosResponse } from "axios";
 
 export abstract class Request implements RequestInterface {
   public requestUrl: string = "";
@@ -10,15 +11,7 @@ export abstract class Request implements RequestInterface {
     get: GET,
   };
 
-  constructor({
-    url,
-    body,
-    headers,
-  }: {
-    url?: string | undefined;
-    body?: object | undefined;
-    headers?: object | undefined;
-  }) {
+  constructor({ body, headers }: { body?: object | undefined; headers?: object | undefined }) {
     this.requestBody = body ?? {};
     this.requestHeaders = headers ?? {};
   }
@@ -27,8 +20,8 @@ export abstract class Request implements RequestInterface {
     return {};
   }
 
-  transformer(): object {
-    return {};
+  transformer(response: AxiosResponse<any, any>): object {
+    return response;
   }
 
   getFetchUrl(): string {

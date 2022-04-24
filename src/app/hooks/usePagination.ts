@@ -1,18 +1,25 @@
 import { useState } from "react";
 
-export const usePagination = (getData: (pageNumber: number) => any) => {
+export const usePagination = (
+  getData: (pageNumber: number) => any,
+): [items: any[], loadMore: any, hasMore: boolean, pageNumber: number] => {
   const [items, setItems] = useState<any[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
   const loadMore = async () => {
-    const list = getData(pageNumber);
-    if (!list || !list?.length) {
+    try {
+      const list = await getData(pageNumber);
+      if (!list || !list?.length) {
+        setHasMore(false);
+        return;
+      }
+      setPageNumber(pageNumber + 1);
+      setItems([...items, ...list]);
+    } catch (e) {
+      alert("مشکلثی در زمان دریافت اطلاعات پیش اومد.");
       setHasMore(false);
-      return;
     }
-    setPageNumber(pageNumber + 1);
-    setItems([...items, ...list]);
   };
 
   return [items, loadMore, hasMore, pageNumber];
