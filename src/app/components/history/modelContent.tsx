@@ -1,10 +1,9 @@
 import React from "react";
 import cn from "classnames";
 import moment from "jalali-moment";
-import { CaretLeft, ArrowDownRight, ArrowUpLeft } from "phosphor-react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 
-import { getCurrencyView } from "@/constants/getCurrencyView";
+import { getCurrencyView } from "@/utils/getCurrencyView";
 import { TransactionRequestType } from "@/data/rest/TransactionHistoryRequest";
 
 export interface TransactionModelContentProps {

@@ -4,7 +4,7 @@ import moment from "jalali-moment";
 import { CaretLeft, ArrowDownRight, ArrowUpLeft } from "phosphor-react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 
-import { getCurrencyView } from "@/constants/getCurrencyView";
+import { getCurrencyView } from "@/utils/getCurrencyView";
 
 export interface TransactionProps {
   className?: string;
